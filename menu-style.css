@@ -1,0 +1,207 @@
+/* === Futuristic Menu Page for Nineveh Palace === */
+
+:root {
+    --main-dark: #181828;
+    --main-gradient: linear-gradient(110deg, #241d2c 0%, #1f2636 100%);
+    --glass-blur: blur(16px);
+    --neon-orange: #ff9100;
+    --neon-orange-glow: 0 0 16px 4px #ff910099;
+    --accent-gold: #ffd580;
+    --accent-purple: #a259ff;
+    --card-glass: rgba(32,28,48, 0.33);
+    --card-border: rgba(255,255,255,0.11);
+    --glass-shadow: 0 12px 32px 0 #ff910033, 0 2px 8px #241d2c55;
+  }
+  
+  html, body {
+    min-height: 100%;
+    background: var(--main-gradient);
+    font-family: 'Cairo', 'Arial', sans-serif;
+    color: #fff;
+    direction: rtl;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  
+  body {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: var(--main-gradient);
+  }
+  
+  /* Animated Glowing Background */
+  .futuristic-bg {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 65% 72%, #ff910022 0%, #ffd58011 40%, transparent 85%) no-repeat,
+                radial-gradient(circle at 30% 20%, #a259ff33 0%, transparent 70%) no-repeat,
+                linear-gradient(110deg, #241d2c 30%, #1f2636 100%);
+    background-size: cover;
+    filter: blur(0px);
+    pointer-events: none;
+    transition: background-position 0.7s cubic-bezier(.7,.2,.3,1);
+    will-change: background-position;
+  }
+  
+  /* Header */
+  .fancy-header {
+    width: 100%;
+    padding: 2.2rem 0 0.9rem 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .glow-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--neon-orange);
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 24px #ff9100, 0 2px 0 #fff2;
+    filter: drop-shadow(0 2px 8px #ff910099);
+    background: linear-gradient(100deg, #ff9100 60%, #ffd580 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    border-radius: 16px;
+  }
+  
+  /* Categories Grid */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2.5rem;
+    max-width: 1020px;
+    margin: 3rem auto 0 auto;
+    padding: 0 1.5rem;
+    z-index: 3;
+    position: relative;
+  }
+  
+  /* Category Card */
+  .category-card {
+    background: var(--card-glass);
+    border: 1.5px solid var(--card-border);
+    border-radius: 2rem;
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    text-decoration: none;
+    color: #fff;
+    padding: 2.6rem 1.2rem 1.5rem 1.2rem;
+    transition:
+      transform 0.29s cubic-bezier(.7,.2,.3,1),
+      box-shadow 0.34s cubic-bezier(.7,.2,.3,1),
+      border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    will-change: transform, box-shadow;
+  }
+  
+  .category-card::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 170%;
+    height: 170%;
+    background: radial-gradient(circle, #ff910044 0%, #a259ff33 30%, transparent 90%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: opacity 0.4s, transform 0.4s;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .category-card:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .category-card:hover, .category-card:focus {
+    transform: translateY(-12px) scale(1.045) rotate(-1deg);
+    border-color: var(--neon-orange);
+    box-shadow: 0 0 45px 0 #ff910055, 0 8px 22px #241d2cAA, 0 2px 8px #ffd58055;
+    z-index: 2;
+  }
+  .icon-wrap {
+    font-size: 2.9rem;
+    color: var(--accent-gold);
+    background: linear-gradient(120deg, #ffd580 60%, #ff9100 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 24px #ff910022, 0 2px 8px #ffd58077;
+    padding: 1.2rem 1.3rem;
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2.5px solid #ffd58033;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  }
+  .category-card:hover .icon-wrap {
+    color: #fff;
+    background: linear-gradient(110deg, #ff9100 80%, #a259ff 100%);
+    box-shadow: 0 0 32px #ffd58088, 0 2px 16px #ff9100bb;
+  }
+  
+  .cat-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffd580;
+    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 10px #241d2c88;
+    transition: color 0.22s;
+  }
+  .category-card:hover .cat-title {
+    color: #fff;
+  }
+  
+  /* Footer */
+  .futuristic-footer {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0 0.7rem 0;
+    color: #d1d1d1;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    background: transparent;
+    margin-top: 3rem;
+    z-index: 10;
+    opacity: 0.85;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 700px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 0.8rem;
+    }
+    .fancy-header .glow-title {
+      font-size: 2.1rem;
+    }
+    .category-card {
+      padding: 2.1rem 0.9rem 1.1rem 0.9rem;
+    }
+  }
+  
+  /* scrollbar styling for luxury feel */
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: #1f2636;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(140deg, #ff9100bb 20%, #a259ff88 100%);
+    border-radius: 8px;
+  }
